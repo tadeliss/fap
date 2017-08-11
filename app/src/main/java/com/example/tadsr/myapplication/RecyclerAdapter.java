@@ -39,7 +39,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter <RecyclerAdapter.Photo
 
         public void bindData(RecentPhotosResponse.Photo mPhoto) {
 
-            Picasso.with(context).load(mPhoto.getUrlC()).into(mItemImage);
+            Picasso.with(context).load(mPhoto.getUrlN()).into(mItemImage);
         }
     }
 

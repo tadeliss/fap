@@ -2,13 +2,15 @@ package com.example.tadsr.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,29 +21,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private LinearLayoutManager LinearLayoutManager;
-    private GridLayoutManager GridLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testRetrofit();
-
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.item_image);
-        int numberOfColumns = 6;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-
-        mRecyclerView = new RecyclerAdapter(this, data);
-
-        recyclerView.setAdapter(mRecyclerView);
+        getRecentPhotos();
     }
 
     private void requestPhoto() {}
 
-    void testRetrofit() {
+    void getRecentPhotos() {
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.flickr.com/")
